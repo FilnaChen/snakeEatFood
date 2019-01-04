@@ -47,7 +47,6 @@
         };
         window.onkeydown = (event) => {
             if (!ishit) {
-                const oldTail = snake[0];
                 // 清除面板
                 context.clearRect(0, 0, 320, 320);
                 // 画出蛇爬行的面板
@@ -72,11 +71,12 @@
                     drawSnake(snake);
                     return;
                 }
-                snake.shift();
+                
                 // 是否吃到食物
                 if (snake[snake.length - 1][0] === (foodCol + 1) && snake[snake.length - 1][1] === (foodRow + 1)) {
                     drawFood();
-                    snake.unshift(oldTail);
+                } else {
+                    snake.shift();
                 }
                 drawSnake(snake);
                 // 判断是否撞墙
